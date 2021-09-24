@@ -1,5 +1,6 @@
 def main():
     print("Welcome my first python program!")
+    handleContacts()
     tryIfCluster()
     tryObjcets()
     calculateSum()
@@ -41,6 +42,26 @@ def calculateSum():
             continue
     
     print("The sum of the numbers {} is {}.".format(numbers, sum(numbers)))
+
+def readContacts():
+    with open("contacts.txt", "r") as tf:
+        return tf.read().split(';')
+
+def saveContacts(contacts):
+    contacts = list(filter(None, contacts))
+    file = open("contacts.txt", "a")
+    file.write(";".join(contacts))
+    file.close()
+
+def handleContacts():
+    printFunctionalityTitle("File Handling")
+    contacts = readContacts()
+    print("Your current contact lists contains the following people")
+    print("\n".join(contacts))
+    name = input("Now you can add a contact:")
+    contacts.append(name)
+    saveContacts(contacts)
+    print("Your contacts have been saves auccessfully.")
 
 def tryObjcets():
     printFunctionalityTitle("Objects in Python")
